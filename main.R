@@ -64,4 +64,12 @@ hcahps_wide <- hcahps_raw %>%
   left_join(hcahps_wide_linear, by = "Provider ID") %>%
   left_join(hcahps_wide_star, by = "Provider ID")
 
+# Visualizations
+ggplot(hcahps_long_resp, aes_string(x = "`HCAHPS Measure ID`", y = "`HCAHPS Answer Percent`")) +
+  geom_boxplot() + coord_flip()
 
+ggplot(hcahps_long_linear, aes_string(x = "`HCAHPS Measure ID`", y = "`HCAHPS Linear Mean Value`")) +
+  geom_boxplot() + coord_flip()
+
+ggplot(hcahps_long_star, aes_string(x = "`HCAHPS Measure ID`", y = "`Patient Survey Star Rating`")) +
+  geom_boxplot() + coord_flip()
