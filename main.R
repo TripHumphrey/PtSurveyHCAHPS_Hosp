@@ -38,10 +38,12 @@ hcahps_long_resp <- hcahps_raw %>%
 hcahps_wide_resp <- hcahps_long_resp %>% 
   spread('HCAHPS Measure ID', 'HCAHPS Answer Percent')
 
-# Spread Row Level Star response data to wide format
-hcahps_wide_linear <- hcahps_raw %>%
+# Isolate linear response data in long and wide formats
+hcahps_long_linear <- hcahps_raw %>%
   filter(str_detect(`HCAHPS Measure ID`, "LINEAR")) %>%
-  select(`Provider ID`, `HCAHPS Measure ID`, `HCAHPS Linear Mean Value`) %>%
+  select(`Provider ID`, `HCAHPS Measure ID`, `HCAHPS Linear Mean Value`)
+
+hcahps_wide_linear <- hcahps_long_linear %>%
   spread('HCAHPS Measure ID', 'HCAHPS Linear Mean Value')
 
 # Spread Row level Leikert response data to wide format
