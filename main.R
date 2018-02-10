@@ -29,11 +29,13 @@ hcahps_raw <- read_csv("Patient_survey__HCAHPS__-_Hospital.csv",
 
 # Need to convert numeric data into appropriate class
 
-
-# Spread Row Level LInear response data to wide format
-hcahps_wide_resp <- hcahps_raw %>%
+# Isolate Leikert response data in long and wide formats
+# For some reason, this leikert data is split into separate categories as separate measures rather than single variable factor data
+hcahps_long_resp <- hcahps_raw %>%
   filter(!str_detect(`HCAHPS Measure ID`, "LINEAR|STAR")) %>%
-  select(`Provider ID`, `HCAHPS Measure ID`, `HCAHPS Answer Percent`) %>%
+  select(`Provider ID`, `HCAHPS Measure ID`, `HCAHPS Answer Percent`)
+
+hcahps_wide_resp <- hcahps_long_resp %>% 
   spread('HCAHPS Measure ID', 'HCAHPS Answer Percent')
 
 # Spread Row Level Star response data to wide format
