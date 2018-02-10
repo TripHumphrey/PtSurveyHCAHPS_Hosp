@@ -46,12 +46,12 @@ hcahps_long_linear <- hcahps_raw %>%
 hcahps_wide_linear <- hcahps_long_linear %>%
   spread('HCAHPS Measure ID', 'HCAHPS Linear Mean Value')
 
-# Spread Row level Leikert response data to wide format
-#
-# For some reason, this leikert data is split into separate categories as separate measures rather than single variable factor data
-hcahps_wide_star <- hcahps_raw %>%
+# Isolate star response data in long and wide formats
+hcahps_long_star <- hcahps_raw %>%
   filter(str_detect(`HCAHPS Measure ID`, "STAR")) %>%
-  select('Provider ID',`HCAHPS Measure ID`, `Patient Survey Star Rating`) %>%
+  select('Provider ID',`HCAHPS Measure ID`, `Patient Survey Star Rating`)
+
+hcahps_wide_star <- hcahps_long_star %>%
   spread('HCAHPS Measure ID', `Patient Survey Star Rating`)
 
 # Create a new dataframe to join with the wide datasets
