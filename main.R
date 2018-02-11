@@ -64,6 +64,12 @@ hcahps_wide <- hcahps_raw %>%
   left_join(hcahps_wide_linear, by = "Provider ID") %>%
   left_join(hcahps_wide_star, by = "Provider ID")
 
+# Output Percentile Tables
+
+lvls <- c(.5, .75, .9) #Desired percentile levels can be modified here
+benchmarks <- t(sapply(hcahps_wide_resp[2:length(hcahps_wide_resp)], quantile, lvls, na.rm = T))
+htmlTable(benchmarks)
+
 # Visualizations
 ggplot(hcahps_long_resp, aes_string(x = "`HCAHPS Measure ID`", y = "`HCAHPS Answer Percent`")) +
   geom_boxplot() + coord_flip()
