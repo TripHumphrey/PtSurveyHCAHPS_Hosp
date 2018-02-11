@@ -5,6 +5,7 @@ library(magrittr) # for piping functionality
 library(tidyr)    # to create tidy data
 library(stringr)  # for string functionality
 library(ggplot2)  # for visualization
+library(htmlTable)# for pretty tables
 
 # Placeholder to store api query in future development
 # 
