@@ -63,6 +63,11 @@ hcahps_wide <- hcahps_raw %>%
   left_join(hcahps_wide_linear, by = "Provider ID") %>%
   left_join(hcahps_wide_star, by = "Provider ID")
 
+hcahps_wide <- extract(hcahps_wide, Location, c("coords"), "\\(([^)]+)\\)")
+hcahps_wide <- separate(hcahps_wide, coords, c("Latitude","Longitude"), ",")
+
+write_csv(hcahps_wide,"hcahps_wide.csv", delim = ",")
+
 # Output Percentile Tables
 
 lvls <- c(.5, .75, .9) #Desired percentile levels can be modified here
