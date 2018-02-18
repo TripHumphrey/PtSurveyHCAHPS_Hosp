@@ -1,7 +1,7 @@
 # Include neccesary packages
 library(readr)    # To read csv data
 library(dplyr)    # To manipulate data
-library(magrittr) # for piping functionality
+# library(magrittr) # for piping functionality
 library(tidyr)    # to create tidy data
 library(stringr)  # for string functionality
 library(ggplot2)  # for visualization
