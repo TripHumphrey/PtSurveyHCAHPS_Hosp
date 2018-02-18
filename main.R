@@ -28,8 +28,6 @@ hcahps_raw <- read_csv("Patient_survey__HCAHPS__-_Hospital.csv",
                         `Survey Response Rate Percent Footnote` = col_skip())
                        )
 
-# Need to convert numeric data into appropriate class
-
 # Isolate Leikert response data in long and wide formats
 # For some reason, this leikert data is split into separate categories as separate measures rather than single variable factor data
 hcahps_long_resp <- hcahps_raw %>%
