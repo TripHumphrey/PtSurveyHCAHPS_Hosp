@@ -83,3 +83,15 @@ ggplot(hcahps_long_linear, aes_string(x = "`HCAHPS Measure ID`", y = "`HCAHPS Li
 
 ggplot(hcahps_long_star, aes_string(x = "`HCAHPS Measure ID`", y = "`Patient Survey Star Rating`")) +
   geom_boxplot() + coord_flip()
+df <- reshape2::melt(round(cor(hcahps_wide_linear[-1], use = "complete.obs"),2))
+
+levels(df$Var1) <- c("Clean","NurseCom","DocCom",
+                     "StaffResp","Pain","Meds","Disch",
+                     "CareTrns","HspRating","Quiet","Recmd")
+levels(df$Var2) <- c("Clean","NurseCom","DocCom",
+                     "StaffResp","Pain","Meds","Disch",
+                     "CareTrns","HspRating","Quiet","Recmd")
+
+ggplot(df, aes(x = Var1, y = Var2, fill = value, labels = value)) +
+  geom_tile() +
+  geom_text(aes(label=value, size=value), color="white")
