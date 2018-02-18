@@ -83,6 +83,9 @@ ggplot(hcahps_long_linear, aes_string(x = "`HCAHPS Measure ID`", y = "`HCAHPS Li
 
 ggplot(hcahps_long_star, aes_string(x = "`HCAHPS Measure ID`", y = "`Patient Survey Star Rating`")) +
   geom_boxplot() + coord_flip()
+
+summary(lm(data = hcahps_wide_linear, H_RECMND_LINEAR_SCORE ~ H_QUIET_LINEAR_SCORE + H_CLEAN_LINEAR_SCORE + H_COMP_1_LINEAR_SCORE))
+
 df <- reshape2::melt(round(cor(hcahps_wide_linear[-1], use = "complete.obs"),2))
 
 levels(df$Var1) <- c("Clean","NurseCom","DocCom",
